@@ -6,8 +6,7 @@ To-do/task management mobile app that will have a kanban board style
 
 ## Built with:
 
--React
--React Native
+-React Native (with drag and drop library)
 -Typescript
 -postgreSQL
 
