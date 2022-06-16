@@ -1,9 +1,13 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import authRouter from './routes/auth'
 
 dotenv.config();
 
 const app: Express = express();
+
+app.use('/', authRouter)
+
 const port = process.env.PORT;
 
 app.get('/', (req: Request, res: Response) => {
