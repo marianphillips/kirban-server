@@ -1,3 +1,0 @@
-interface Secret {
-    secret: string;
-}
