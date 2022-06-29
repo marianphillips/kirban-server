@@ -1,5 +1,9 @@
 # Kirban (server-side)
 
+## ERD
+
+![ERD Kirban](./images/kirban.PNG)
+
 ## Description
 
 To-do/task management mobile app that will have a kanban board style
