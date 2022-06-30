@@ -6,7 +6,7 @@ import validator from 'email-validator'
 const dbClient = new prisma.PrismaClient()
 
 export const createUser = async (req : Request, res : Response) => {
-    console.log(req)
+    // console.log(req)
     const passwordHash = await bcrypt.hash(req.body.password, 8)
   
     try {
@@ -41,6 +41,7 @@ export const createUser = async (req : Request, res : Response) => {
         data: createdUser
       })
     } catch (error) {
+      console.log(error)
       return res.status(500).json({
         status: 'fail, server error',
       })

@@ -18,7 +18,7 @@ const client_1 = __importDefault(require("@prisma/client"));
 const email_validator_1 = __importDefault(require("email-validator"));
 const dbClient = new client_1.default.PrismaClient();
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req);
+    // console.log(req)
     const passwordHash = yield bcrypt_1.default.hash(req.body.password, 8);
     try {
         const existingUser = yield dbClient.user.findUnique({
@@ -50,6 +50,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
     catch (error) {
+        console.log(error);
         return res.status(500).json({
             status: 'fail, server error',
         });
