@@ -4,6 +4,15 @@ import prisma from "@prisma/client"
 import validator from 'email-validator'
 
 const dbClient = new prisma.PrismaClient()
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const memberList = await dbClient.user.findMany()
+    return res.status(200).json({ data: memberList })
+} catch (e) {
+    console.log('ERROR', e)
+    return res.status(500).json('unable to get users')
+}
+}
 
 export const createUser = async (req : Request, res : Response) => {
     // console.log(req)
