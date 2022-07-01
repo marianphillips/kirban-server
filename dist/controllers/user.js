@@ -12,11 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = void 0;
+exports.createUser = exports.getUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const client_1 = __importDefault(require("@prisma/client"));
 const email_validator_1 = __importDefault(require("email-validator"));
 const dbClient = new client_1.default.PrismaClient();
+const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const memberList = yield dbClient.user.findMany();
+        return res.status(200).json({ data: memberList });
+    }
+    catch (e) {
+        console.log('ERROR', e);
+        return res.status(500).json('unable to get users');
+    }
+});
+exports.getUser = getUser;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // console.log(req)
     const passwordHash = yield bcrypt_1.default.hash(req.body.password, 8);
